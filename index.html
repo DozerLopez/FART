@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FART | Fine Art Review and Theory</title>
+    <style>
+        /* 主题颜色变量 - 你可以在这里一键修改颜色 */
+        :root {
+            --theme-color: #800000; /* 牛血红 */
+            --bg-color: #fdfdfd;    /* 极淡的底色，增加质感 */
+            --text-main: #1a1a1a;
+        }
+
+        body { 
+            font-family: "Times New Roman", Times, serif; 
+            background: var(--bg-color); 
+            color: var(--text-main); 
+            margin: 0; padding: 0; line-height: 1.6; 
+        }
+
+        .container { max-width: 1050px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* Header Section */
+        header { 
+            border-bottom: 4px solid var(--theme-color); 
+            text-align: center; 
+            padding-bottom: 30px; 
+            margin-bottom: 50px; 
+        }
+        .logo { 
+            font-size: 5rem; 
+            font-weight: bold; 
+            letter-spacing: -2px; 
+            color: var(--theme-color); /* 标志使用主题色 */
+            line-height: 1;
+        }
+        .tagline { font-style: italic; font-size: 1.2rem; margin-top: 10px; color: #555; }
+        
+        nav { 
+            margin-top: 25px; 
+            padding: 10px 0; 
+            border-top: 1px solid #ddd;
+        }
+        nav a { 
+            text-decoration: none; color: var(--text-main); 
+            margin: 0 15px; text-transform: uppercase; 
+            font-size: 0.85rem; letter-spacing: 1px;
+        }
+        nav a:hover { color: var(--theme-color); }
+
+        /* Main Content Grid */
+        .main-grid { display: grid; grid-template-columns: 2.2fr 1fr; gap: 80px; }
+        
+        /* Section Titles */
+        .section-title { 
+            border-bottom: 2px solid var(--theme-color); 
+            font-size: 1.2rem; font-weight: bold; 
+            margin-bottom: 30px; padding-bottom: 5px; 
+            text-transform: uppercase; color: var(--theme-color);
+        }
+
+        /* Article List */
+        article { margin-bottom: 50px; position: relative; }
+        .meta { 
+            font-size: 0.85rem; color: var(--theme-color); 
+            font-weight: bold; margin-bottom: 8px; 
+        }
+        article h2 { font-size: 2rem; margin: 0 0 12px 0; line-height: 1.1; }
+        article h2 a { text-decoration: none; color: var(--text-main); transition: 0.3s; }
+        article h2 a:hover { color: var(--theme-color); }
+        .excerpt { font-size: 1.05rem; text-align: justify; color: #444; }
+
+        /* Sidebar Items */
+        .hot-item { margin-bottom: 20px; font-size: 1.1rem; }
+        .hot-num { color: var(--theme-color); font-weight: bold; font-style: italic; margin-right: 10px; }
+        .hot-item a { text-decoration: none; color: var(--text-main); }
+        .hot-item a:hover { text-decoration: underline; }
+
+        .category-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border: 1px solid var(--theme-color);
+            color: var(--theme-color);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0 5px 10px 0;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .category-tag:hover {
+            background: var(--theme-color);
+            color: #fff;
+        }
+
+        footer { 
+            border-top: 1px solid #ddd; margin-top: 80px; 
+            padding: 40px 0; text-align: center; font-size: 0.9rem; color: #777;
+        }
+
+        @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo">FART</div>
+        <div class="tagline">Fine Art Review and Theory: The Unfiltered Archive</div>
+        <nav>
+            <a href="index.html">Archives</a>
+            <a href="#taxonomy">Taxonomy</a>
+            <a href="#">Editorial</a>
+            <a href="#">Submissions</a>
+        </nav>
+    </header>
+
+    <div class="main-grid">
+        <!-- 左侧：最新发布 -->
+        <section>
+            <div class="section-title">New Releases / 最新发布</div>
+            
+            <article>
+                <div class="meta">Oct. 2024 / Digital Ontology</div>
+                <h2><a href="papers/p2.html">算法时代的画笔：论人工智能生成的本体论偶然性</a></h2>
+                <p class="excerpt">当人类不再掌控每一个像素，艺术的定义是否发生了偏移？本文探讨了AI作为一种“自动书写器”在当代艺术中的角色，并试图定义一种新的机器直觉...</p>
+            </article>
+
+            <article>
+                <div class="meta">Sept. 2024 / Institutional Critique</div>
+                <h2><a href="papers/p1.html">围墙之外：论艺术体制的边界与未被审查的直觉</a></h2>
+                <p class="excerpt">为什么我们需要跳出同行评议？因为直觉往往在严格的逻辑审查中丧失。FART致力于记录这些珍贵的、带有原始冲动的思考...</p>
+            </article>
+        </section>
+
+        <!-- 右侧：边栏 -->
+        <aside>
+            <div class="sidebar-section">
+                <div class="section-title">Trending / 热门</div>
+                <div class="hot-item"><span class="hot-num">01.</span><a href="#">论艺术体制的边界</a></div>
+                <div class="hot-item"><span class="hot-num">02.</span><a href="#">算法时代的画笔</a></div>
+                <div class="hot-item"><span class="hot-num">03.</span><a href="#">垃圾美学：消费主义废墟</a></div>
+            </div>
+
+            <div class="sidebar-section" id="taxonomy">
+                <div class="section-title">Taxonomy / 分类</div>
+                <div style="margin-top: 20px;">
+                    <a href="#" class="category-tag">Digital Art</a>
+                    <a href="#" class="category-tag">Philosophy</a>
+                    <a href="#" class="category-tag">Curatorial</a>
+                    <a href="#" class="category-tag">Manifesto</a>
+                    <a href="#" class="category-tag">Interview</a>
+                    <a href="#" class="category-tag">History</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>© 2024-2025 FART. Fine Art Review and Theory.</p>
+        <p>Managed manually for intellectual integrity.</p>
+    </footer>
+</div>
+
+</body>
+</html>
