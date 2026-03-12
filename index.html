@@ -152,6 +152,39 @@
 
         <!-- 右侧：边栏 -->
         <aside>
+
+
+            
+<!-- 搜索框开始 -->
+<div class="sidebar-section">
+    <div class="section-title">Search / 搜索</div>
+    <div style="display: flex; gap: 5px;">
+        <input type="text" id="search-input" placeholder="输入关键词..." 
+               style="width: 100%; padding: 8px; font-family: 'Times New Roman'; border: 1px solid #000;">
+        <button onclick="executeSearch()" 
+                style="background: var(--theme-color); color: #fff; border: none; padding: 0 15px; cursor: pointer;">
+            GO
+        </button>
+    </div>
+</div>
+
+<script>
+    function executeSearch() {
+        const query = document.getElementById('search-input').value;
+        if (query) {
+            // 跳转到搜索结果页，并带上搜索参数
+            window.location.href = `search.html?query=${encodeURIComponent(query)}`;
+        }
+    }
+    // 支持回车搜索
+    document.getElementById('search-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') executeSearch();
+    });
+</script>
+<!-- 搜索框结束 -->
+
+
+            
             <div class="sidebar-section">
                 <div class="section-title">Trending / 热门</div>
                 <div class="hot-item"><span class="hot-num">01.</span><a href="#">论艺术体制的边界</a></div>
