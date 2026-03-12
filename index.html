@@ -5,114 +5,235 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FART | Fine Art Review and Theory</title>
     <style>
-        /* 主题颜色变量 - 你可以在这里一键修改颜色 */
         :root {
             --theme-color: #800000; /* 牛血红 */
-            --bg-color: #fdfdfd;    /* 极淡的底色，增加质感 */
+            --bg-color: #ffffff;    /* 纯白背景更有报纸感 */
             --text-main: #1a1a1a;
+            --line-black: #000000;
         }
 
         body { 
             font-family: "Times New Roman", Times, serif; 
             background: var(--bg-color); 
             color: var(--text-main); 
-            margin: 0; padding: 0; line-height: 1.6; 
+            margin: 0; padding: 0; 
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 1050px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
         
-        /* Header Section */
+        /* --- 报头优化 Masthead --- */
         header { 
-            border-bottom: 4px solid var(--theme-color); 
+            border-bottom: 5px solid var(--line-black); 
             text-align: center; 
-            padding-bottom: 30px; 
-            margin-bottom: 50px; 
+            padding-bottom: 20px; 
+            margin-bottom: 40px; 
+            border-top: 1px solid var(--line-black); /* 顶部细线增加层次 */
+            margin-top: 20px;
         }
         .logo { 
-            font-size: 5rem; 
+            font-size: 6rem; 
             font-weight: bold; 
-            letter-spacing: -2px; 
-            color: var(--theme-color); /* 标志使用主题色 */
-            line-height: 1;
+            letter-spacing: -4px; 
+            color: var(--theme-color); 
+            line-height: 0.9;
+            margin: 15px 0;
+            display: block;
+            text-decoration: none;
         }
-        .tagline { font-style: italic; font-size: 1.2rem; margin-top: 10px; color: #555; }
+        .tagline { 
+            font-style: italic; 
+            font-size: 1.25rem; 
+            color: #333; 
+            border-top: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            display: inline-block;
+            padding: 5px 30px;
+            margin-top: 10px;
+            letter-spacing: 1px;
+        }
         
+        .date-bar {
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
         nav { 
-            margin-top: 25px; 
-            padding: 10px 0; 
-            border-top: 1px solid #ddd;
+            margin-top: 20px; 
+            display: flex;
+            justify-content: center;
+            gap: 40px;
         }
         nav a { 
-            text-decoration: none; color: var(--text-main); 
-            margin: 0 15px; text-transform: uppercase; 
-            font-size: 0.85rem; letter-spacing: 1px;
+            text-decoration: none; 
+            color: var(--text-main); 
+            text-transform: uppercase; 
+            font-size: 0.9rem; 
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            transition: color 0.2s;
         }
         nav a:hover { color: var(--theme-color); }
 
-        /* Main Content Grid */
-        .main-grid { display: grid; grid-template-columns: 2.2fr 1fr; gap: 80px; }
+        /* --- 主网格布局 --- */
+        .main-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 300px; /* 固定右侧宽度 */
+            gap: 60px; 
+        }
         
-        /* Section Titles */
+        /* --- 栏目标题优化 --- */
         .section-title { 
-            border-bottom: 2px solid var(--theme-color); 
-            font-size: 1.2rem; font-weight: bold; 
-            margin-bottom: 30px; padding-bottom: 5px; 
-            text-transform: uppercase; color: var(--theme-color);
+            border-bottom: 3px solid var(--line-black); 
+            font-size: 1.1rem; 
+            font-weight: bold; 
+            margin-bottom: 30px; 
+            padding-bottom: 3px; 
+            text-transform: uppercase; 
+            color: #000;
+            letter-spacing: 1px;
         }
 
-        /* Article List */
-        article { margin-bottom: 50px; position: relative; }
+        /* --- 文章列表优化 --- */
+        article { 
+            margin-bottom: 60px; 
+            padding-bottom: 40px;
+            border-bottom: 1px solid #eee;
+        }
+        article:last-child { border-bottom: none; }
+
         .meta { 
-            font-size: 0.85rem; color: var(--theme-color); 
-            font-weight: bold; margin-bottom: 8px; 
+            font-size: 0.8rem; 
+            color: var(--theme-color); 
+            font-weight: bold; 
+            margin-bottom: 12px; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        article h2 { font-size: 2rem; margin: 0 0 12px 0; line-height: 1.1; }
-        article h2 a { text-decoration: none; color: var(--text-main); transition: 0.3s; }
-        article h2 a:hover { color: var(--theme-color); }
-        .excerpt { font-size: 1.05rem; text-align: justify; color: #444; }
+        article h2 { 
+            font-size: 2.4rem; 
+            margin: 0 0 15px 0; 
+            line-height: 1; 
+            letter-spacing: -0.5px;
+        }
+        article h2 a { text-decoration: none; color: var(--text-main); }
+        article h2 a:hover { color: #555; }
+        
+        .excerpt { 
+            font-size: 1.1rem; 
+            text-align: justify; 
+            color: #333; 
+            line-height: 1.6;
+        }
 
-        /* Sidebar Items */
-        .hot-item { margin-bottom: 20px; font-size: 1.1rem; }
-        .hot-num { color: var(--theme-color); font-weight: bold; font-style: italic; margin-right: 10px; }
-        .hot-item a { text-decoration: none; color: var(--text-main); }
-        .hot-item a:hover { text-decoration: underline; }
+        /* --- 侧边栏：搜索框优化 --- */
+        .sidebar-section { margin-bottom: 50px; }
+        .search-container {
+            display: flex;
+            border: 2px solid #000;
+            padding: 2px;
+        }
+        .search-container input {
+            border: none;
+            padding: 10px;
+            flex-grow: 1;
+            font-family: "Times New Roman";
+            font-size: 1rem;
+            outline: none;
+        }
+        .search-container button {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 0 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-container button:hover { background: var(--theme-color); }
 
+        /* --- 热门文章排行 --- */
+        .hot-item { 
+            margin-bottom: 18px; 
+            font-size: 1.15rem; 
+            line-height: 1.3;
+            display: flex;
+            align-items: flex-start;
+        }
+        .hot-num { 
+            color: var(--theme-color); 
+            font-weight: bold; 
+            font-style: italic; 
+            margin-right: 12px;
+            font-size: 1.4rem;
+        }
+        .hot-item a { text-decoration: none; color: var(--text-main); font-weight: bold; }
+        .hot-item a:hover { border-bottom: 1px solid var(--theme-color); }
+
+        /* --- 分类标签优化 --- */
+        .taxonomy-group-title {
+            font-size: 0.75rem; 
+            color: #888; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin: 20px 0 10px 0; 
+            border-bottom: 1px solid #eee;
+            padding-bottom: 3px;
+        }
         .category-tag {
             display: inline-block;
-            padding: 4px 12px;
-            border: 1px solid var(--theme-color);
-            color: var(--theme-color);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin: 0 5px 10px 0;
+            padding: 3px 8px;
+            border: 1px solid #000;
+            color: #000;
+            font-size: 0.8rem;
+            margin: 0 4px 8px 0;
             text-decoration: none;
-            transition: 0.3s;
+            font-weight: bold;
+            transition: all 0.2s;
         }
         .category-tag:hover {
             background: var(--theme-color);
             color: #fff;
+            border-color: var(--theme-color);
+        }
+        .tag-theory {
+            display: block;
+            text-align: center;
+            font-size: 1.1rem;
+            padding: 8px;
+            border: 2px solid var(--theme-color);
+            color: var(--theme-color);
         }
 
         footer { 
-            border-top: 1px solid #ddd; margin-top: 80px; 
-            padding: 40px 0; text-align: center; font-size: 0.9rem; color: #777;
+            border-top: 1px solid #000; 
+            margin-top: 100px; 
+            padding: 50px 0; 
+            text-align: center; 
         }
+        footer p { margin: 5px 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) { 
+            .main-grid { grid-template-columns: 1fr; } 
+            .logo { font-size: 4rem; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <div class="logo">FART</div>
-        <div class="tagline">Fine Art Review and Theory: The Unfiltered Archive</div>
+        <div class="date-bar" id="current-date">October 27, 2024</div>
+        <a href="index.html" class="logo">FART</a>
+        <div class="tagline">Fine Art Review and Theory</div>
         <nav>
-           
-    <a href="index.html">Home</a>
-    <a href="editorial.html">Editorial</a>
-    <a href="submit.html">Submit</a>
-
+            <a href="index.html">Home</a>
+            <a href="editorial.html">Editorial</a>
+            <a href="submit.html">Submit</a>
         </nav>
     </header>
 
@@ -121,133 +242,99 @@
         <section>
             <div class="section-title">New Releases / 最新发布</div>
 
-            <!-- 最新发布开始：请在下方插入新文章 -->
-
             <article>
                 <div class="meta">Oct. 2024 / Digital Ontology</div>
                 <h2><a href="papers/p2.html">算法时代的画笔</a></h2>
-                <p class="excerpt">...</p>
-            </article>
-
-            <article>
-                <div class="meta">Oct. 2024 / Digital Ontology</div>
-                <h2><a <h2><a href="papers/p1.html">论艺术体制的边界...</a></h2>
-                <p class="excerpt">当人类不再掌控每一个像素，艺术的定义是否发生了偏移？本文探讨了AI作为一种“自动书写器”在当代艺术中的角色，并试图定义一种新的机器直觉...</p>
-            </article>
-          
-            <article>
-                <div class="meta">Oct. 2024 / Digital Ontology</div>
-                <h2><a <h2><a href="papers/p1.html">论艺术体制的边界...</a></h2>
                 <p class="excerpt">当人类不再掌控每一个像素，艺术的定义是否发生了偏移？本文探讨了AI作为一种“自动书写器”在当代艺术中的角色，并试图定义一种新的机器直觉...</p>
             </article>
 
             <article>
-                <div class="meta">Sept. 2024 / Institutional Critique</div>
-                <h2><a href="papers/p1.html">围墙之外：论艺术体制的边界与未被审查的直觉</a></h2>
-                <p class="excerpt">为什么我们需要跳出同行评议？因为直觉往往在严格的逻辑审查中丧失。FART致力于记录这些珍贵的、带有原始冲动的思考...</p>
+                <div class="meta">Oct. 2024 / Institutional Critique</div>
+                <h2><a href="papers/p1.html">论艺术体制的边界</a></h2>
+                <p class="excerpt">为什么我们需要跳出同行评议？因为直觉往往在严格的逻辑审查中丧失。FART致力于记录这些珍贵的、带有原始冲动的思考，探讨在传统学术期刊体制之外，艺术批评如何获得一种新的合法性。</p>
             </article>
 
-            <!-- 最新发布结束 -->
-            
+            <article>
+                <div class="meta">Sept. 2024 / Waste Aesthetics</div>
+                <h2><a href="papers/p3.html">垃圾美学：消费主义废墟中的宣言</a></h2>
+                <p class="excerpt">一切艺术最终都会坍塌为符号垃圾。我们不创造美，我们只是重新排列那些被遗弃的思想残余。本文确立了一种基于“过度生产”的艺术观。</p>
+            </article>
         </section>
 
         <!-- 右侧：边栏 -->
         <aside>
+            <!-- 搜索 -->
+            <div class="sidebar-section">
+                <div class="section-title">Search</div>
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Keywords...">
+                    <button onclick="executeSearch()">GO</button>
+                </div>
+            </div>
 
-
-            
-<!-- 搜索框开始 -->
-<div class="sidebar-section">
-    <div class="section-title">Search / 搜索</div>
-    <div style="display: flex; gap: 5px;">
-        <input type="text" id="search-input" placeholder="输入关键词..." 
-               style="width: 100%; padding: 8px; font-family: 'Times New Roman'; border: 1px solid #000;">
-        <button onclick="executeSearch()" 
-                style="background: var(--theme-color); color: #fff; border: none; padding: 0 15px; cursor: pointer;">
-            GO
-        </button>
-    </div>
-</div>
-
-<script>
-    function executeSearch() {
-        const query = document.getElementById('search-input').value;
-        if (query) {
-            // 跳转到搜索结果页，并带上搜索参数
-            window.location.href = `search.html?query=${encodeURIComponent(query)}`;
-        }
-    }
-    // 支持回车搜索
-    document.getElementById('search-input').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') executeSearch();
-    });
-</script>
-<!-- 搜索框结束 -->
-
-
-            
+            <!-- 热门排行 -->
             <div class="sidebar-section">
                 <div class="section-title">Trending / 热门</div>
-                <div class="hot-item"><span class="hot-num">01.</span><a href="#">论艺术体制的边界</a></div>
-                <div class="hot-item"><span class="hot-num">02.</span><a href="#">算法时代的画笔</a></div>
-                <div class="hot-item"><span class="hot-num">03.</span><a href="#">垃圾美学：消费主义废墟</a></div>
+                <div class="hot-item"><span class="hot-num">01.</span><a href="papers/p1.html">论艺术体制的边界</a></div>
+                <div class="hot-item"><span class="hot-num">02.</span><a href="papers/p2.html">算法时代的画笔</a></div>
+                <div class="hot-item"><span class="hot-num">03.</span><a href="papers/p3.html">垃圾美学宣言</a></div>
             </div>
-                       
 
-            
- <!-- 分类侧边栏开始 -->
-            
-<div class="sidebar-section" id="taxonomy">
-    <div class="section-title">Taxonomy / 分类</div>
-    
-    <!-- 1. 核心理论 Core Theory -->
-    <div style="margin-bottom: 25px;">
-        <p style="font-size:0.75rem; color:#888; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; border-bottom:1px solid #eee;">Core / 核心</p>
-        <a href="category.html?tag=Theory" class="category-tag" style="display:block; text-align:center; font-weight:bold; border-width:2px;">Theory (理论研究)</a>
-    </div>
+            <!-- 分类 -->
+            <div class="sidebar-section" id="taxonomy">
+                <div class="section-title">Taxonomy</div>
+                
+                <div class="taxonomy-group-title">Core / 核心理论</div>
+                <a href="category.html?tag=Theory" class="category-tag tag-theory">Theory (理论研究)</a>
 
-    <!-- 2. 传统九大艺术 Traditional Nine Arts -->
-    <div style="margin-bottom: 25px;">
-        <p style="font-size:0.75rem; color:#888; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; border-bottom:1px solid #eee;">Traditional / 传统九大艺术</p>
-        <div style="display: flex; flex-wrap: wrap;">
-            <a href="category.html?tag=Painting" class="category-tag">Painting (绘画)</a>
-            <a href="category.html?tag=Sculpture" class="category-tag">Sculpture (雕塑)</a>
-            <a href="category.html?tag=Architecture" class="category-tag">Architecture (建筑)</a>
-            <a href="category.html?tag=Music" class="category-tag">Music (音乐)</a>
-            <a href="category.html?tag=Literature" class="category-tag">Literature (文学)</a>
-            <a href="category.html?tag=Dance" class="category-tag">Dance (舞蹈)</a>
-            <a href="category.html?tag=Theater" class="category-tag">Theater (戏剧)</a>
-            <a href="category.html?tag=Cinema" class="category-tag">Cinema (电影)</a>
-            <a href="category.html?tag=Media" class="category-tag">Media (媒体/漫画)</a>
-        </div>
-    </div>
+                <div class="taxonomy-group-title">Traditional / 传统九大艺术</div>
+                <div style="display: flex; flex-wrap: wrap;">
+                    <a href="category.html?tag=Painting" class="category-tag">Painting</a>
+                    <a href="category.html?tag=Sculpture" class="category-tag">Sculpture</a>
+                    <a href="category.html?tag=Architecture" class="category-tag">Architecture</a>
+                    <a href="category.html?tag=Music" class="category-tag">Music</a>
+                    <a href="category.html?tag=Literature" class="category-tag">Literature</a>
+                    <a href="category.html?tag=Dance" class="category-tag">Dance</a>
+                    <a href="category.html?tag=Theater" class="category-tag">Theater</a>
+                    <a href="category.html?tag=Cinema" class="category-tag">Cinema</a>
+                    <a href="category.html?tag=Media" class="category-tag">Media</a>
+                </div>
 
-    <!-- 3. 新兴与交叉艺术 Emerging & Cross-disciplinary -->
-    <div style="margin-bottom: 25px;">
-        <p style="font-size:0.75rem; color:#888; text-transform:uppercase; letter-spacing:1px; margin-bottom:10px; border-bottom:1px solid #eee;">Emerging / 新兴与交叉</p>
-        <div style="display: flex; flex-wrap: wrap;">
-            <a href="category.html?tag=Game" class="category-tag">Game (游戏)</a>
-            <a href="category.html?tag=Performance" class="category-tag">Performance (行为)</a>
-            <a href="category.html?tag=Manifesto" class="category-tag">Manifesto (宣言)</a>
-            <a href="category.html?tag=AI%20Art" class="category-tag">AI Art (人工智能)</a>
-            <a href="category.html?tag=Bio%20Art" class="category-tag">Bio Art (生物艺术)</a>
-            <a href="category.html?tag=Installation" class="category-tag">Installation (装置)</a>
-        </div>
-    </div>
-</div>
-            
-<!-- 分类侧边栏结束 -->
-
-
-            
+                <div class="taxonomy-group-title">Emerging / 新兴艺术</div>
+                <div style="display: flex; flex-wrap: wrap;">
+                    <a href="category.html?tag=Game" class="category-tag">Game</a>
+                    <a href="category.html?tag=Performance" class="category-tag">Performance</a>
+                    <a href="category.html?tag=Manifesto" class="category-tag">Manifesto</a>
+                    <a href="category.html?tag=AI%20Art" class="category-tag">AI Art</a>
+                    <a href="category.html?tag=Bio%20Art" class="category-tag">Bio Art</a>
+                    <a href="category.html?tag=Installation" class="category-tag">Installation</a>
+                </div>
+            </div>
         </aside>
     </div>
 
     <footer>
-        <p>© 2024-2025 FART. Fine Art Review and Theory.</p>
-        <p>Managed manually for intellectual integrity.</p>
+        <p>© 2026-2027 FART. FINE ART REVIEW AND THEORY.</p>
+        <p>A Peer-Independent Open Archive.</p>
     </footer>
 </div>
+
+<script>
+    // 自动更新顶部的日期显示
+    const d = new Date();
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    document.getElementById("current-date").innerHTML = months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+
+    function executeSearch() {
+        const query = document.getElementById('search-input').value;
+        if (query) {
+            window.location.href = `search.html?query=${encodeURIComponent(query)}`;
+        }
+    }
+    document.getElementById('search-input').addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') executeSearch();
+    });
+</script>
 
 </body>
 </html>
