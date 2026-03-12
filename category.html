@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>FART | 分类浏览</title>
+    <script src="registry.js"></script> <!-- 引入名单 -->
+    <style>
+        :root { --theme-color: #800000; }
+        body { font-family: "Times New Roman", Times, serif; background: #fdfdfd; padding: 40px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        h1 { color: var(--theme-color); border-bottom: 2px solid var(--theme-color); padding-bottom: 10px; text-transform: uppercase; }
+        .list-item { margin: 20px 0; border-bottom: 1px dashed #ccc; padding-bottom: 10px; }
+        .list-item a { text-decoration: none; color: #000; font-size: 1.3rem; font-weight: bold; }
+        .meta { color: var(--theme-color); font-size: 0.9rem; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" style="text-decoration:none; color:#666;">← Back</a>
+        <h1 id="category-title">Loading...</h1>
+        <div id="papers-list"></div>
+    </div>
+
+    <script>
+        // 1. 获取网址里的参数，比如 category.html?tag=Digital
+        const params = new URLSearchParams(window.location.search);
+        const currentTag = params.get('tag');
+        document.getElementById('category-title').innerText = "Category: " + currentTag;
+
+        // 2. 从名单里过滤出属于这个分类的文章
+        const filteredPapers = PAPERS_DATA.filter(p => p.tag === currentTag);
+
+        // 3. 把结果画在页面上
+        const listDiv = document.getElementById('papers-list');
+        filteredPapers.forEach(p => {
+            listDiv.innerHTML += `
+                <div class="list-item">
+                    <div class="meta">${p.date} / ${p.author}</div>
+                    <a href="${p.url}">${p.title}</a>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>
