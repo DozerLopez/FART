@@ -3,48 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FART | 论文阅读</title>
+    
+    <!-- 策略 3: Google Search Console 验证 (请将 content 替换为你自己的验证码) -->
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
+
+    <title>FART | 论艺术体制的边界</title>
+    
+    <!-- 策略 2: 引入 Lyket 点赞脚本 -->
+    <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_f7a6f7e8417c82c6d7e6d7e6d7e6d7"></script>
+    
+    <!-- 策略 1: 引入不蒜子阅读量脚本 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
     <style>
-        :root { --theme-color: #800000; --bg-color: #fdfdfd; }
-        body { font-family: "Times New Roman", Times, serif; background: var(--bg-color); color: #1a1a1a; line-height: 1.7; margin: 0; padding: 0; }
-        .container { max-width: 750px; margin: 0 auto; padding: 60px 25px; }
-        .back-link { text-decoration: none; color: var(--theme-color); font-weight: bold; font-size: 0.9rem; text-transform: uppercase; }
-        header { text-align: center; margin-bottom: 60px; margin-top: 30px; }
-        h1 { font-size: 2.4rem; margin-bottom: 10px; line-height: 1.2; }
-        .meta { font-style: italic; color: #666; margin-bottom: 30px; }
-        .abstract { border: 1px solid var(--theme-color); padding: 25px; margin-bottom: 50px; text-align: justify; font-size: 0.95rem; background: #fff; }
-        .content { font-size: 1.15rem; text-align: justify; white-space: pre-wrap; }
-        footer { border-top: 1px solid #ddd; margin-top: 100px; padding-top: 20px; text-align: center; font-size: 0.8rem; color: #999; }
+        :root { --theme-color: #800000; --text-black: #1a1a1a; --border-gray: #e5e5e5; }
+        
+        body { 
+            font-family: "Times New Roman", Times, serif; 
+            background: #ffffff; color: var(--text-black); 
+            margin: 0; padding: 0; line-height: 1.7; 
+        }
+
+        /* 顶部 FART 品牌区（对标首页） */
+        .site-header {
+            text-align: center;
+            padding: 30px 20px 15px 20px;
+            border-bottom: 3px double #000;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .site-header .logo {
+            font-size: 3.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: var(--theme-color);
+            letter-spacing: -2px;
+        }
+        .site-header nav {
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+        .site-header nav a {
+            text-decoration: none; color: #000; margin: 0 15px;
+        }
+
+        /* 文章主体 */
+        .article-container {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        /* 类别与元数据 */
+        .category-tag {
+            color: var(--theme-color);
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.2rem;
+            line-height: 1.05;
+            margin-bottom: 25px;
+            letter-spacing: -1px;
+        }
+
+        .article-subheadline {
+            font-size: 1.4rem;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .byline-row {
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            padding: 10px 0;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* 正文内容 */
+        .article-body {
+            font-size: 1.25rem;
+            text-align: justify;
+            margin-bottom: 80px;
+        }
+        /* 首字放大效果 */
+        .article-body p:first-of-type::first-letter {
+            float: left;
+            font-size: 5rem;
+            line-height: 4rem;
+            padding-top: 4px;
+            padding-right: 8px;
+            color: var(--theme-color);
+            font-weight: bold;
+        }
+
+        /* 作者信息区 (国际报纸风格) */
+        .author-card {
+            border-top: 4px solid #000;
+            padding-top: 20px;
+            margin-top: 100px;
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            gap: 30px;
+        }
+        .author-label {
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        .author-bio {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.5;
+        }
+        .author-bio strong { color: #000; font-size: 1.2rem; display: block; margin-bottom: 5px; }
+
+        /* 点赞区 */
+        .interaction-box {
+            margin: 50px 0;
+            padding: 30px 0;
+            border-top: 1px dashed #ccc;
+            text-align: center;
+        }
+        .interaction-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            font-size: 0.8rem;
+            color: #999;
+            border-top: 1px solid #eee;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="../index.html" class="back-link">← 返回首页 Back to Archive</a>
-        <header>
-            <h1>这里是论文的标题</h1>
-            <div class="meta">作者：[作者名] / 发布日期：2024.10.27 / 分类：#艺术理论</div>
-        </header>
-        <div class="abstract">
-            <strong>ABSTRACT:</strong> 这里填写这篇论文的摘要内容。简明扼要地介绍文章的核心观点。
-        </div>
-        <div class="content">
-            这里是论文的正文内容。
-            你可以直接分段粘贴进来。
-        </div>
-        <footer>
-            <p>© FART Project | Fine Art Review and Theory</p>
-        </div>
-    </div>
 
-    <!-- 1. 引入 Lyket 脚本 -->
-<script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_f7a6f7e8417c82c6d7e6d7e6d7e6d7"></script>
+    <!-- 顶部品牌 -->
+    <header class="site-header">
+        <a href="../index.html" class="logo">FART</a>
+        <nav>
+            <a href="../index.html">Archives</a>
+            <a href="../editorial.html">Editorial</a>
+            <a href="../submit.html">Submit</a>
+        </nav>
+    </header>
 
-    <!-- 2. 点赞按钮（每个按钮的 ID 必须唯一，比如 p1, p2） -->
-<div 
-  data-lyket-type="updown" 
-  data-lyket-id="fart-paper-p1" 
-  data-lyket-color="#800000"
-></div>
-    
+    <article class="article-container">
+        <!-- 类别 -->
+        <span class="category-tag">Theory / 理论研究</span>
+
+        <!-- 标题 -->
+        <h1>论艺术体制的边界与未被审查的直觉</h1>
+        <p class="article-subheadline">为什么在这个被算法包围的时代，我们更需要一种未经评议的思想释放。</p>
+
+        <!-- 元数据栏 -->
+        <div class="byline-row">
+            <div>BY <strong>匿名者 (ANONYMOUS)</strong></div>
+            <div>
+                OCT. 27, 2024 / 
+                <!-- 策略 1: 不蒜子阅读计数显示 -->
+                Views: <span id="busuanzi_value_page_pv">...</span>
+            </div>
+        </div>
+
+        <!-- 正文 -->
+        <div class="article-body">
+            <p>艺术在当代经历了一种本体论的转向。当笔触转化为像素，我们失去的不只是阻力，还有与物质世界的肉身联系。在目前的学术体制下，每一篇讨论此现象的文章都必须经过漫长的审稿周期，而这些直觉往往在修改中丧失了最初的锋芒。</p>
+            
+            <p>我们在这里所做的，并非是对学术严谨性的背叛，而是对思想速度的尊重。当一个想法产生时，它具有某种生物电般的活性，而这种活性在传统期刊的罐装过程中被杀灭了。FART 试图保留这种电流。</p>
+        </div>
+
+        <!-- 策略 2: 点赞功能 (Lyket Widget) -->
+        <div class="interaction-box">
+            <div class="interaction-label">读者评价 / Review this idea</div>
+            <div 
+              data-lyket-type="updown" 
+              data-lyket-id="fart-paper-p1" 
+              data-lyket-color="#800000"
+            ></div>
+        </div>
+
+        <!-- 作者信息区 -->
+        <section class="author-card">
+            <div class="author-label">The Author</div>
+            <div class="author-bio">
+                <strong>匿名者 (Anonymous)</strong>
+                独立撰稿人，策展人。长期关注数字鸿沟与当代美学的冲突。本文是其关于“逃逸速度”研究系列的一部分。作者通过 FART 平台发布此文，旨在寻求更广泛的社群反馈。
+            </div>
+        </section>
+
+    </article>
+
+    <footer>
+        <p>© 2024 FART: Fine Art Review and Theory. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
