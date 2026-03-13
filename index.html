@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FART | Fine Art Review and Theory</title>
+    <!-- 引入账本数据 -->
+    <script src="registry.js"></script>
     <style>
         :root {
-            --theme-color: #800000; /* 牛血红 */
-            --bg-color: #ffffff;    /* 纯白背景更有报纸感 */
+            --theme-color: #800000; 
+            --bg-color: #ffffff;
             --text-main: #1a1a1a;
             --line-black: #000000;
         }
@@ -18,218 +20,97 @@
             color: var(--text-main); 
             margin: 0; padding: 0; 
             line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1150px; margin: 0 auto; padding: 20px; }
         
-        /* --- 报头优化 Masthead --- */
+        /* --- 报头 Masthead --- */
         header { 
             border-bottom: 5px solid var(--line-black); 
             text-align: center; 
             padding-bottom: 20px; 
             margin-bottom: 40px; 
-            border-top: 1px solid var(--line-black); /* 顶部细线增加层次 */
+            border-top: 1px solid var(--line-black);
             margin-top: 20px;
         }
         .logo { 
-            font-size: 6rem; 
-            font-weight: bold; 
-            letter-spacing: -4px; 
-            color: var(--theme-color); 
-            line-height: 0.9;
-            margin: 15px 0;
-            display: block;
-            text-decoration: none;
+            font-size: 6rem; font-weight: bold; letter-spacing: -4px; 
+            color: var(--theme-color); line-height: 0.9; margin: 15px 0;
+            display: block; text-decoration: none;
         }
         .tagline { 
-            font-style: italic; 
-            font-size: 1.25rem; 
-            color: #333; 
-            border-top: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-            display: inline-block;
-            padding: 5px 30px;
-            margin-top: 10px;
-            letter-spacing: 1px;
+            font-style: italic; font-size: 1.25rem; color: #333; 
+            border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;
+            display: inline-block; padding: 5px 30px; margin-top: 10px; letter-spacing: 1px;
         }
-        
-        .date-bar {
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            margin-top: 10px;
-            font-weight: bold;
-        }
+        .date-bar { text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; margin-top: 10px; font-weight: bold; }
 
-        nav { 
-            margin-top: 20px; 
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-        }
-        nav a { 
-            text-decoration: none; 
-            color: var(--text-main); 
-            text-transform: uppercase; 
-            font-size: 0.9rem; 
-            font-weight: bold;
-            letter-spacing: 1.5px;
-            transition: color 0.2s;
-        }
+        nav { margin-top: 20px; display: flex; justify-content: center; gap: 40px; }
+        nav a { text-decoration: none; color: var(--text-main); text-transform: uppercase; font-size: 0.9rem; font-weight: bold; letter-spacing: 1.5px; }
         nav a:hover { color: var(--theme-color); }
 
-        /* --- 主网格布局 --- */
-        .main-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 300px; /* 固定右侧宽度 */
-            gap: 60px; 
-        }
-        
-        /* --- 栏目标题优化 --- */
-        .section-title { 
-            border-bottom: 3px solid var(--line-black); 
-            font-size: 1.1rem; 
-            font-weight: bold; 
-            margin-bottom: 30px; 
-            padding-bottom: 3px; 
-            text-transform: uppercase; 
-            color: #000;
-            letter-spacing: 1px;
-        }
+        /* --- 主网格 --- */
+        .main-grid { display: grid; grid-template-columns: 1fr 320px; gap: 60px; }
+        .section-title { border-bottom: 3px solid var(--line-black); font-size: 1.1rem; font-weight: bold; margin-bottom: 35px; padding-bottom: 3px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- 文章列表优化 --- */
-        article { 
-            margin-bottom: 60px; 
+        /* --- 文章列表样式 (与 registry.js 响应) --- */
+        #archive-content article { 
+            margin-bottom: 55px; 
             padding-bottom: 40px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #ddd;
         }
-        article:last-child { border-bottom: none; }
+        #archive-content article:last-child { border-bottom: none; }
 
-        .meta { 
-            font-size: 0.8rem; 
-            color: var(--theme-color); 
-            font-weight: bold; 
-            margin-bottom: 12px; 
+        .article-meta {
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            color: #666;
         }
-        article h2 { 
-            font-size: 2.4rem; 
-            margin: 0 0 15px 0; 
-            line-height: 1; 
-            letter-spacing: -0.5px;
-        }
-        article h2 a { text-decoration: none; color: var(--text-main); }
-        article h2 a:hover { color: #555; }
+        .article-meta .date, .article-meta .author { color: #000; font-weight: bold; }
+        .article-meta .category { color: var(--theme-color); font-weight: bold; }
+        .article-meta .divider { margin: 0 10px; color: #ccc; }
+
+        article h2 { font-size: 2.6rem; margin: 0 0 18px 0; line-height: 1.05; letter-spacing: -1px; }
+        article h2 a { text-decoration: none; color: var(--text-main); transition: 0.2s; }
+        article h2 a:hover { color: var(--theme-color); }
         
-        .excerpt { 
-            font-size: 1.1rem; 
-            text-align: justify; 
-            color: #333; 
-            line-height: 1.6;
+        .article-abstract { 
+            font-size: 1.15rem; text-align: justify; color: #333; line-height: 1.6;
+            font-style: italic; padding-left: 20px; border-left: 3px solid #eee;
         }
 
-        /* --- 侧边栏：搜索框优化 --- */
+        /* --- 侧边栏 --- */
         .sidebar-section { margin-bottom: 50px; }
-        .search-container {
-            display: flex;
-            border: 2px solid #000;
-            padding: 2px;
-        }
-        .search-container input {
-            border: none;
-            padding: 10px;
-            flex-grow: 1;
-            font-family: "Times New Roman";
-            font-size: 1rem;
-            outline: none;
-        }
-        .search-container button {
-            background: #000;
-            color: #fff;
-            border: none;
-            padding: 0 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .search-container button:hover { background: var(--theme-color); }
+        .search-container { display: flex; border: 2px solid #000; padding: 2px; }
+        .search-container input { border: none; padding: 10px; flex-grow: 1; font-family: "Times New Roman"; font-size: 1rem; outline: none; }
+        .search-container button { background: #000; color: #fff; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; }
+        
+        .hot-item { margin-bottom: 18px; display: flex; align-items: flex-start; }
+        .hot-num { color: var(--theme-color); font-weight: bold; font-style: italic; margin-right: 12px; font-size: 1.4rem; }
+        .hot-item a { text-decoration: none; color: var(--text-main); font-weight: bold; line-height: 1.3; }
 
-        /* --- 热门文章排行 --- */
-        .hot-item { 
-            margin-bottom: 18px; 
-            font-size: 1.15rem; 
-            line-height: 1.3;
-            display: flex;
-            align-items: flex-start;
-        }
-        .hot-num { 
-            color: var(--theme-color); 
-            font-weight: bold; 
-            font-style: italic; 
-            margin-right: 12px;
-            font-size: 1.4rem;
-        }
-        .hot-item a { text-decoration: none; color: var(--text-main); font-weight: bold; }
-        .hot-item a:hover { border-bottom: 1px solid var(--theme-color); }
+        .taxonomy-group-title { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 10px 0; border-bottom: 1px solid #eee; padding-bottom: 3px; }
+        .category-tag { display: inline-block; padding: 3px 8px; border: 1px solid #000; color: #000; font-size: 0.8rem; margin: 0 4px 8px 0; text-decoration: none; font-weight: bold; transition: 0.2s; }
+        .category-tag:hover { background: var(--theme-color); color: #fff; border-color: var(--theme-color); }
+        .tag-theory { display: block; text-align: center; font-size: 1.1rem; padding: 8px; border: 2px solid var(--theme-color); color: var(--theme-color); }
 
-        /* --- 分类标签优化 --- */
-        .taxonomy-group-title {
-            font-size: 0.75rem; 
-            color: #888; 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            margin: 20px 0 10px 0; 
-            border-bottom: 1px solid #eee;
-            padding-bottom: 3px;
-        }
-        .category-tag {
-            display: inline-block;
-            padding: 3px 8px;
-            border: 1px solid #000;
-            color: #000;
-            font-size: 0.8rem;
-            margin: 0 4px 8px 0;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.2s;
-        }
-        .category-tag:hover {
-            background: var(--theme-color);
-            color: #fff;
-            border-color: var(--theme-color);
-        }
-        .tag-theory {
-            display: block;
-            text-align: center;
-            font-size: 1.1rem;
-            padding: 8px;
-            border: 2px solid var(--theme-color);
-            color: var(--theme-color);
-        }
-
-        footer { 
-            border-top: 1px solid #000; 
-            margin-top: 100px; 
-            padding: 50px 0; 
-            text-align: center; 
-        }
+        footer { border-top: 1px solid #000; margin-top: 100px; padding: 50px 0; text-align: center; }
         footer p { margin: 5px 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        @media (max-width: 768px) { 
-            .main-grid { grid-template-columns: 1fr; } 
-            .logo { font-size: 4rem; }
-        }
+        @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } .logo { font-size: 4rem; } }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <div class="date-bar" id="current-date">October 27, 2024</div>
+        <div class="date-bar" id="current-date">-- --, ----</div>
         <a href="index.html" class="logo">FART</a>
-        <div class="tagline">Fine Art Review and Theory</div>
+        <div class="tagline">Fine Art Review and Theory: The Unfiltered Archive</div>
         <nav>
             <a href="index.html">Home</a>
             <a href="editorial.html">Editorial</a>
@@ -238,32 +119,14 @@
     </header>
 
     <div class="main-grid">
-        <!-- 左侧：最新发布 -->
-        <section>
-            <div class="section-title">New Releases / 最新发布</div>
-
-            <article>
-                <div class="meta">Oct. 2024 / Digital Ontology</div>
-                <h2><a href="papers/p2.html">算法时代的画笔</a></h2>
-                <p class="excerpt">当人类不再掌控每一个像素，艺术的定义是否发生了偏移？本文探讨了AI作为一种“自动书写器”在当代艺术中的角色，并试图定义一种新的机器直觉...</p>
-            </article>
-
-            <article>
-                <div class="meta">Oct. 2024 / Institutional Critique</div>
-                <h2><a href="papers/p1.html">论艺术体制的边界</a></h2>
-                <p class="excerpt">为什么我们需要跳出同行评议？因为直觉往往在严格的逻辑审查中丧失。FART致力于记录这些珍贵的、带有原始冲动的思考，探讨在传统学术期刊体制之外，艺术批评如何获得一种新的合法性。</p>
-            </article>
-
-            <article>
-                <div class="meta">Sept. 2024 / Waste Aesthetics</div>
-                <h2><a href="papers/p3.html">垃圾美学：消费主义废墟中的宣言</a></h2>
-                <p class="excerpt">一切艺术最终都会坍塌为符号垃圾。我们不创造美，我们只是重新排列那些被遗弃的思想残余。本文确立了一种基于“过度生产”的艺术观。</p>
-            </article>
+        <!-- 左侧：动态渲染区域 -->
+        <section id="archive-content">
+            <div class="section-title">The Archive / 最新发布</div>
+            <!-- 这里的内容将由 JavaScript 自动生成 -->
         </section>
 
         <!-- 右侧：边栏 -->
         <aside>
-            <!-- 搜索 -->
             <div class="sidebar-section">
                 <div class="section-title">Search</div>
                 <div class="search-container">
@@ -272,22 +135,19 @@
                 </div>
             </div>
 
-            <!-- 热门排行 -->
             <div class="sidebar-section">
-                <div class="section-title">Trending / 热门</div>
-                <div class="hot-item"><span class="hot-num">01.</span><a href="papers/p1.html">论艺术体制的边界</a></div>
-                <div class="hot-item"><span class="hot-num">02.</span><a href="papers/p2.html">算法时代的画笔</a></div>
-                <div class="hot-item"><span class="hot-num">03.</span><a href="papers/p3.html">垃圾美学宣言</a></div>
+                <div class="section-title">Trending</div>
+                <div id="trending-list">
+                    <!-- 这里也可以选择手动写死，或由脚本生成前3篇 -->
+                </div>
             </div>
 
-            <!-- 分类 -->
             <div class="sidebar-section" id="taxonomy">
                 <div class="section-title">Taxonomy</div>
-                
-                <div class="taxonomy-group-title">Core / 核心理论</div>
+                <div class="taxonomy-group-title">Core</div>
                 <a href="category.html?tag=Theory" class="category-tag tag-theory">Theory (理论研究)</a>
-
-                <div class="taxonomy-group-title">Traditional / 传统九大艺术</div>
+                <!-- 下面保持你的分类 HTML 代码即可 -->
+                <div class="taxonomy-group-title">Traditional</div>
                 <div style="display: flex; flex-wrap: wrap;">
                     <a href="category.html?tag=Painting" class="category-tag">Painting</a>
                     <a href="category.html?tag=Sculpture" class="category-tag">Sculpture</a>
@@ -299,8 +159,7 @@
                     <a href="category.html?tag=Cinema" class="category-tag">Cinema</a>
                     <a href="category.html?tag=Media" class="category-tag">Media</a>
                 </div>
-
-                <div class="taxonomy-group-title">Emerging / 新兴艺术</div>
+                <div class="taxonomy-group-title">Emerging</div>
                 <div style="display: flex; flex-wrap: wrap;">
                     <a href="category.html?tag=Game" class="category-tag">Game</a>
                     <a href="category.html?tag=Performance" class="category-tag">Performance</a>
@@ -314,22 +173,54 @@
     </div>
 
     <footer>
-        <p>© 2026-2027 FART. FINE ART REVIEW AND THEORY.</p>
-        <p>A Peer-Independent Open Archive.</p>
+        <p>© 2024-2025 FART. FINE ART REVIEW AND THEORY.</p>
+        <p>A PEER-INDEPENDENT OPEN ARCHIVE.</p>
     </footer>
 </div>
 
 <script>
-    // 自动更新顶部的日期显示
-    const d = new Date();
+    // 1. 自动更新顶部日期
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const d = new Date();
     document.getElementById("current-date").innerHTML = months[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
 
+    // 2. 动态渲染文章列表
+    const archiveContainer = document.getElementById('archive-content');
+    const trendingContainer = document.getElementById('trending-list');
+
+    PAPERS_DATA.forEach((paper, index) => {
+        // 渲染主列表
+        const articleHTML = `
+            <article>
+                <div class="article-meta">
+                    <span class="date">${paper.date}</span>
+                    <span class="divider">|</span>
+                    <span class="author">By ${paper.author}</span>
+                    <span class="divider">|</span>
+                    <span class="category">${paper.tag}</span>
+                </div>
+                <h2><a href="${paper.url}">${paper.title}</a></h2>
+                <div class="article-abstract">${paper.abstract}</div>
+            </article>
+        `;
+        archiveContainer.insertAdjacentHTML('beforeend', articleHTML);
+
+        // 自动将前3篇放入 Trending 排行榜
+        if (index < 3) {
+            const trendingHTML = `
+                <div class="hot-item">
+                    <span class="hot-num">0${index + 1}.</span>
+                    <a href="${paper.url}">${paper.title}</a>
+                </div>
+            `;
+            trendingContainer.insertAdjacentHTML('beforeend', trendingHTML);
+        }
+    });
+
+    // 3. 搜索逻辑
     function executeSearch() {
         const query = document.getElementById('search-input').value;
-        if (query) {
-            window.location.href = `search.html?query=${encodeURIComponent(query)}`;
-        }
+        if (query) { window.location.href = `search.html?query=${encodeURIComponent(query)}`; }
     }
     document.getElementById('search-input').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') executeSearch();
